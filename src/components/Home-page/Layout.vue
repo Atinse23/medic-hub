@@ -32,7 +32,7 @@
               </v-list-item-content>
             </v-list-item>
           </v-list-group>
-          <v-list-item v-else :key="item.text" link>
+          <v-list-item v-else :key="item.text" link :to="item.url">
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
@@ -91,30 +91,11 @@ export default {
     dialog: false,
     drawer: false,
     items: [
-      { icon: "mdi-contacts", text: "Contacts" },
-      { icon: "mdi-history", text: "Frequently contacted" },
-      { icon: "mdi-content-copy", text: "Duplicates" },
-      {
-        icon: "mdi-chevron-up",
-        "icon-alt": "mdi-chevron-down",
-        text: "Labels",
-        model: true,
-        children: [{ icon: "mdi-plus", text: "Create label" }]
-      },
-      {
-        icon: "mdi-chevron-up",
-        "icon-alt": "mdi-chevron-down",
-        text: "More",
-        model: false,
-        children: [
-          { text: "Import" },
-          { text: "Export" },
-          { text: "Print" },
-          { text: "Undo changes" },
-          { text: "Other contacts" }
-        ]
-      },
-      { icon: "mdi-cog", text: "Settings" }
+      { icon: "mdi-contacts", text: " Register", url: "/register" },
+      { icon: "mdi-history", text: "Login", url: "/login" },
+      { icon: "mdi-content-copy", text: "Cart", url: "/cart" },
+
+      { icon: "mdi-cog", text: "Settings", url: "/settings" }
     ]
   })
 };

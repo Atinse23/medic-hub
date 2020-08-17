@@ -1,9 +1,9 @@
 <template>
-  <v-card class="mx-12 my-4 pa-10" rounded flat>
+  <v-card class="mx-12 items pa-md-10 pa-0" rounded flat>
     <h2>Featured Items</h2>
 
     <div class="row">
-      <div class="col-12 col-md-3 col-sm-6 col-xs-6">
+      <div class="col-12 col-md-3 col-sm-10 col-xs-10">
         <v-card class="pb-4">
           <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
 
@@ -26,7 +26,7 @@
           </v-card-actions>
         </v-card>
       </div>
-      <div class="col-12 col-md-3 col-sm-6 col-xs-6">
+      <div class="col-12 col-md-3 col-sm-10 col-xs-10">
         <v-card class="pb-4">
           <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
 
@@ -49,7 +49,7 @@
           </v-card-actions>
         </v-card>
       </div>
-      <div class="col-12 col-md-3 col-sm-6 col-xs-6">
+      <div class="col-12 col-md-3 col-sm-10 col-xs-10">
         <v-card class="pb-4">
           <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
 
@@ -72,7 +72,7 @@
           </v-card-actions>
         </v-card>
       </div>
-      <div class="col-12 col-md-3 col-sm-6 col-xs-6">
+      <div class="col-12 col-md-3 col-sm-10 col-xs-10">
         <v-card class="pb-4">
           <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px"></v-img>
 
@@ -102,5 +102,8 @@
 <style scoped>
 h3 {
   color: #311b92 !important ;
+}
+.items {
+  top: 40px;
 }
 </style>
