@@ -46,7 +46,12 @@
             <v-btn color="#311b92" dark class="pa-6">
               <v-icon>mdi-cart</v-icon>ADD TO CART
             </v-btn>
-            <v-btn class="ml-4 pa-6" color="#311b92" outlined>Check Out</v-btn>
+            <v-btn
+              class="ml-4 pa-6"
+              color="#311b92"
+              outlined
+              @click.prevent="paystackPopup"
+            >Check Out</v-btn>
           </div>
         </div>
       </div>
@@ -283,6 +288,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   data: () => ({
     rating: 4.5,
@@ -332,6 +338,30 @@ export default {
           "<span class='text--primary'>Britta Holt</span> &mdash; Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       }
     ]
-  })
+  }),
+  methods: {
+    paystackPopup() {
+      let handler = PaystackPop.setup({
+        key: "pk_test_ca93f9ae5aa8eb81be47ca9e19b0891f87eb8fe8",
+        email: "eromcy@ymail.com",
+        amount: 200,
+        firstname: "Jagaban",
+        lastname: "TDolar",
+        ref: "" + Math.floor(Math.random() * 1000000000 + 1),
+
+        onClose: function() {
+          alert("Window closed.");
+        },
+        callback: function(response) {
+          axios
+            .post("https://medic-end.herokuapp.com/verifyPayment", {
+              referenceId: response.reference
+            })
+            .then(response => console.log(response.data));
+        }
+      });
+      handler.openIframe();
+    }
+  }
 };
 </script>

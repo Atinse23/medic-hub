@@ -61,19 +61,20 @@
         class="hidden-sm-and-down"
       ></v-text-field>
       <v-spacer></v-spacer>
-      <v-btn elevation="elevation" class="transparent-button mr-4 d-none d-md-flex">Register</v-btn>
-      <v-btn
-        elevation="elevation"
-        class="transparent-button mr-4 d-none d-md-flex"
-        to="/login"
-      >Login</v-btn>
+      <template v-if="!loggedIn">
+        <v-btn elevation="elevation" class="transparent-button mr-4 d-none d-md-flex">Register</v-btn>
+        <v-btn
+          elevation="elevation"
+          class="transparent-button mr-4 d-none d-md-flex"
+          to="/login"
+        >Login</v-btn>
+      </template>
+      <template v-else>
+        <span>Welcome</span>
 
-      <span>Welcome</span>
-      <v-btn icon large>
-        <v-avatar size="32px" item color="yellow">
-          <div class="initials">UJ</div>
-        </v-avatar>
-      </v-btn>
+        <div class="initials">{{userName}}</div>
+      </template>
+
       <v-btn icon class="mr-12">
         <v-icon color="white">mdi-cart</v-icon>
       </v-btn>
@@ -97,7 +98,15 @@ export default {
 
       { icon: "mdi-cog", text: "Settings", url: "/settings" }
     ]
-  })
+  }),
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+    userName() {
+      return this.$store.state.auth.user.firstname;
+    }
+  }
 };
 </script>
 
@@ -116,5 +125,6 @@ export default {
 }
 .initials {
   color: #311b92 !important;
+  margin-left: 5px;
 }
 </style>

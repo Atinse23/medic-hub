@@ -2,7 +2,7 @@
   <v-row class="pa-0 mx-0 mt-16">
     <v-col cols="12" md="3" class="d-none d-md-flex"></v-col>
     <v-col cols="12" md="6" class="pa-0">
-      <v-card class="py-2 mx-4">
+      <v-card class="py-2 mx-4" :loading="loading">
         <v-form @submit.prevent="handleLogin" class="my-16 mx-md-16 mx-4">
           <h3 class="login-title">Welcome back</h3>
 
@@ -12,6 +12,7 @@
             outlined
             color="#42A5F5"
             class="register-input"
+            v-model="email"
           ></v-text-field>
 
           <v-text-field
@@ -23,9 +24,10 @@
             outlined
             color="#42A5F5"
             class="register-input"
+            v-model="password"
           ></v-text-field>
 
-          <v-btn color="#42A5F5" outlined>Login</v-btn>
+          <v-btn color="#42A5F5" outlined @click.prevent="handleLogin">Login</v-btn>
           <v-btn depressed to="/password-reset" light class="forgot-password">Forgot your password?</v-btn>
         </v-form>
       </v-card>
@@ -40,19 +42,34 @@ export default {
 
   data() {
     return {
+      email: "",
+      password: "",
       loading: false,
       message: ".",
       errorMsg: "",
       value: true
     };
   },
-  computed: {
-    loggedIn() {
-      return this.$store.state.onboarding.status.loggedIn;
-    }
-  },
+  computed: {},
   methods: {
-    handleLogin() {}
+    handleLogin() {
+      this.loading = true;
+      if (this.email && this.password) {
+        this.$store
+          .dispatch("auth/loginUser", {
+            email: this.email,
+            password: this.password
+          })
+          .then(
+            res => {
+              this.$router.push("/");
+            },
+            error => {
+              this.loading = false;
+            }
+          );
+      }
+    }
   }
 };
 </script>
