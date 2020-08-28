@@ -1,6 +1,24 @@
 import { login, register, logout, } from '../../services/auth-user'
 
 export default {
+    async registerUser({ commit }, user) {
+        return await register(user).
+            then(
+                user => {
+                    console.log(user)
+                    commit('registerSuccess', user);
+
+                    return Promise.resolve(user);
+                }
+            ).catch(
+                err => {
+                    console.log(err)
+                    commit('registerFailure');
+                    return Promise.reject(error)
+                }
+            )
+
+    },
     async loginUser({ commit }, user) {
         return await login(user).then(
             user => {
@@ -19,17 +37,5 @@ export default {
     async logoutUser({ commit }) {
         logout();
         await commit('logout');
-    },
-    async registerUser({ commit }, user) {
-        return await register(user).then(
-            response => {
-                commit('registerSuccess');
-                return Promise.resolve(response.data);
-            },
-            error => {
-                commit('registerFailure');
-                return Promise.reject(error);
-            }
-        );
     }
 }

@@ -62,22 +62,29 @@
       ></v-text-field>
       <v-spacer></v-spacer>
       <template v-if="!loggedIn">
-        <v-btn elevation="elevation" class="transparent-button mr-4 d-none d-md-flex">Register</v-btn>
+        <v-btn
+          elevation="elevation"
+          class="transparent-button mr-4 d-none d-md-flex"
+          to="/register"
+        >Register</v-btn>
         <v-btn
           elevation="elevation"
           class="transparent-button mr-4 d-none d-md-flex"
           to="/login"
         >Login</v-btn>
+        <v-btn icon class="mr-12">
+          <v-icon color="white">mdi-cart</v-icon>
+        </v-btn>
       </template>
       <template v-else>
         <span>Welcome</span>
 
         <div class="initials">{{userName}}</div>
+        <v-btn icon>
+          <v-icon color="white">mdi-cart</v-icon>
+        </v-btn>
+        <v-btn light elevation="elevation" @click="logout">Logout</v-btn>
       </template>
-
-      <v-btn icon class="mr-12">
-        <v-icon color="white">mdi-cart</v-icon>
-      </v-btn>
     </v-app-bar>
   </div>
 </template>
@@ -105,6 +112,11 @@ export default {
     },
     userName() {
       return this.$store.state.auth.user.firstname;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("auth/logoutUser");
     }
   }
 };

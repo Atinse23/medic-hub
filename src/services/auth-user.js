@@ -33,18 +33,21 @@ export const logout = () => {
     localStorage.removeItem('userData')
 }
 
-export const register = (user) => {
-    return axios.post(API_URL + '/api/accounts/register/', {
+export const register = async (user) => {
+    return await axios.post(API_URL + '/register', {
+        firstname: user.firstname,
+        lastname: user.lastname,
+        phonenumber: user.phonenumber,
         email: user.email,
-        password: user.password,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        company_name: user.company_name,
-        website: user.website,
-        role: user.role,
-        corporate: user.corporate,
-
-    });
+        password: user.password
+    }).then(
+        res => {
+            console.log(res);
+            return res.data.user
+        }
+    ).catch(
+        err => console.log(err)
+    )
 }
 
 export const verifyEmail = () => {
