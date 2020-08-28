@@ -2,7 +2,7 @@
   <v-row class="pa-0 mx-0 mt-4">
     <v-col cols="12" md="3" class="d-none d-md-flex"></v-col>
     <v-col cols="12" md="6" class="pa-0">
-      <v-card class="mx-auto mt-6" :loading="loading" width="500">
+      <v-card class="mx-auto mt-6 pb-12" :loading="loading" width="500">
         <h3 class="login-title text-center">Sign Up with Medic Hub</h3>
         <v-form @submit.prevent="handleLogin" class="my-2 mx-md-16 mx-4">
           <ValidationProvider name="firstname" rules="required" v-slot="{ errors }">
