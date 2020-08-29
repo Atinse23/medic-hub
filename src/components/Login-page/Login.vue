@@ -10,7 +10,7 @@
               label="Email Address"
               name="email"
               outlined
-              color="#42A5F5"
+              color="#0D47A1"
               ref="email"
               v-model="email"
               :error-messages="errors[0]"
@@ -25,14 +25,14 @@
               label="Password"
               name="password"
               outlined
-              color="#42A5F5"
+              color="#0D47A1"
               ref="password"
               v-model="password"
               :error-messages="errors[0]"
             ></v-text-field>
           </ValidationProvider>
 
-          <v-btn color="#42A5F5" outlined @click.prevent="handleLogin">Login</v-btn>
+          <v-btn color="#0D47A1" outlined @click.prevent="handleLogin">Login</v-btn>
           <v-btn depressed to="/password-reset" light class="forgot-password">Forgot your password?</v-btn>
         </v-form>
       </v-card>
@@ -86,7 +86,7 @@ export default {
 
 <style scoped>
 .forgot-password {
-  color: #42a5f5;
+  color: #0d47a1;
   background-color: white !important;
 
   text-shadow: none;

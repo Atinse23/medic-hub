@@ -1,6 +1,6 @@
 <template>
   <v-footer :padless="true">
-    <v-card flat width="100%" class="text-center" color="blue" dark>
+    <v-card flat width="100%" class="text-center" color="#0D47A1" dark>
       <v-card-text class="white--text">
         Terms and Condition.
         {{ new Date().getFullYear() }} —

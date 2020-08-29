@@ -44,7 +44,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="#42A5F5" dark flat>
+    <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="#0D47A1" dark flat>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="d-flex d-sm-flex d-md-none"></v-app-bar-nav-icon>
 
       <v-toolbar-title style="width: 300px" class>
@@ -52,14 +52,7 @@
           <v-img src="../../assets/MedicHub Logo.png" width="120"></v-img>
         </v-btn>
       </v-toolbar-title>
-      <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="mdi-magnify"
-        label="Search"
-        class="hidden-sm-and-down"
-      ></v-text-field>
+
       <v-spacer></v-spacer>
       <template v-if="!loggedIn">
         <v-btn
@@ -72,7 +65,7 @@
           class="transparent-button mr-4 d-none d-md-flex"
           to="/login"
         >Login</v-btn>
-        <v-btn icon class="mr-12">
+        <v-btn icon class="mr-12" to="/cart">
           <v-icon color="white">mdi-cart</v-icon>
         </v-btn>
       </template>
@@ -80,7 +73,7 @@
         <span>Welcome</span>
 
         <div class="initials">{{userName}}</div>
-        <v-btn icon>
+        <v-btn icon to="/cart">
           <v-icon color="white">mdi-cart</v-icon>
         </v-btn>
         <v-btn light elevation="elevation" @click="logout">Logout</v-btn>

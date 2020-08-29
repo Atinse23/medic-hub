@@ -1,91 +1,22 @@
 <template>
   <div>
     <v-container>
-      <div class="row">
-        <div class="col-md-5 col-sm-5 col-xs-12">
-          <v-carousel>
-            <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></v-carousel-item>
-            <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></v-carousel-item>
-            <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></v-carousel-item>
-            <v-carousel-item src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"></v-carousel-item>
-          </v-carousel>
-        </div>
-        <div class="col-md-7 col-sm-7 col-xs-12">
-          <v-breadcrumbs class="pb-0" :items="breadcrums"></v-breadcrumbs>
-          <div class="pl-6">
-            <p class="display-1 mb-0">Dissection Kit</p>
-            <v-card-actions class="pa-0">
-              <p class="headline font-weight-light pt-3">
-                $65.00
-                <del style class="subtitle-1 font-weight-thin">$80.00</del>
-              </p>
-              <v-spacer></v-spacer>
-              <v-rating
-                v-model="rating"
-                class
-                background-color="warning lighten-3"
-                color="warning"
-                dense
-              ></v-rating>
-              <span class="body-2 font-weight-thin">25 REVIEWS</span>
-            </v-card-actions>
-            <p
-              class="subtitle-1 font-weight-thin"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Tincidunt arcu non sodales neque sodales ut etiam. Lectus arcu bibendum at varius vel pharetra. Morbi tristique senectus et netus et malesuada.</p>
-            <p class="title">SIZE</p>
-            <v-radio-group v-model="row" row>
-              <v-radio label="XS" value="XS"></v-radio>
-              <v-radio label="S" value="s"></v-radio>
-              <v-radio label="M" value="m"></v-radio>
-              <v-radio label="L" value="l"></v-radio>
-              <v-radio label="XL" value="xl"></v-radio>
-            </v-radio-group>
-            <p class="title">ITEMS</p>
-
-            <v-text-field outlined style="width:100px" :value="1" dense></v-text-field>
-            <v-btn color="#311b92" dark class="pa-6">
-              <v-icon>mdi-cart</v-icon>ADD TO CART
-            </v-btn>
-            <v-btn
-              class="ml-4 pa-6"
-              color="#311b92"
-              outlined
-              @click.prevent="paystackPopup"
-            >Check Out</v-btn>
-          </div>
-        </div>
-      </div>
+      <ProductItem :product="product" />
 
       <div class="row">
         <div class="col-sm-12 col-xs-12 col-md-12">
           <v-tabs>
             <v-tab>Description</v-tab>
-            <v-tab>Materials</v-tab>
+
             <v-tab>REVIEWS</v-tab>
             <v-tab-item>
-              <p class="pt-10 subtitle-1 font-weight-thin">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ultricies mi eget mauris pharetra et. Vel pretium lectus quam id leo in vitae turpis
-                massa. Orci dapibus ultrices in iaculis nunc. At auctor urna nunc id cursus metus. Integer feugiat
-                scelerisque varius morbi enim nunc. Aliquam sem et tortor consequat id porta nibh venenatis cras.
-                Pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus. Malesuada nunc vel risus
-                commodo viverra maecenas. Neque volutpat ac tincidunt vitae semper quis.
-              </p>
+              <p class="pt-10 subtitle-1 font-weight-thick">{{product.description}}</p>
             </v-tab-item>
+
             <v-tab-item>
-              <p class="pt-10 subtitle-1 font-weight-thin">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ultricies mi eget mauris pharetra et. Vel pretium lectus quam id leo in vitae turpis
-                massa. Orci dapibus ultrices in iaculis nunc. At auctor urna nunc id cursus metus. Integer feugiat
-                scelerisque varius morbi enim nunc. Aliquam sem et tortor consequat id porta nibh venenatis cras.
-                Pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus. Malesuada nunc vel risus
-                commodo viverra maecenas. Neque volutpat ac tincidunt vitae semper quis.
-              </p>
-            </v-tab-item>
-            <v-tab-item>
-              <v-list three-line="true" avatar="true">
+              <v-list :three-line="threeline" avatar="true">
                 <v-list-item-group v-model="item" color="primary">
-                  <v-list-item v-for="(item, i) in items" :key="i" inactive="true">
+                  <v-list-item v-for="(item, i) in items" :key="i" :inactive="inactive">
                     <v-list-item-avatar>
                       <v-img :src="item.avatar"></v-img>
                     </v-list-item-avatar>
@@ -287,23 +218,16 @@
     </v-card>
   </div>
 </template>
+
+
+
 <script>
-import axios from "axios";
+import ProductItem from "./ProductItem";
 export default {
   data: () => ({
     rating: 4.5,
-    breadcrums: [
-      {
-        text: "Home",
-        disabled: false,
-        href: "/"
-      },
-      {
-        text: "Equipments",
-        disabled: true,
-        href: "breadcrumbs_shirts"
-      }
-    ],
+    threeline: true,
+    inactive: true,
     item: 5,
     items: [
       {
@@ -339,28 +263,24 @@ export default {
       }
     ]
   }),
-  methods: {
-    paystackPopup() {
-      let handler = PaystackPop.setup({
-        key: "pk_test_ca93f9ae5aa8eb81be47ca9e19b0891f87eb8fe8",
-        email: "eromcy@ymail.com",
-        amount: 200,
-        firstname: "Jagaban",
-        lastname: "TDolar",
-        ref: "" + Math.floor(Math.random() * 1000000000 + 1),
+  components: {
+    ProductItem
+  },
 
-        onClose: function() {
-          alert("Window closed.");
-        },
-        callback: function(response) {
-          axios
-            .post("https://medic-end.herokuapp.com/verifyPayment", {
-              referenceId: response.reference
-            })
-            .then(response => console.log(response.data));
-        }
-      });
-      handler.openIframe();
+  mounted() {
+    let item = JSON.parse(localStorage.getItem("item"));
+    console.log(item);
+  },
+  computed: {
+    product() {
+      if (this.$store.state.products.isPresent) {
+        return this.$store.state.products.product;
+      } else {
+        return this.localData;
+      }
+    },
+    localData() {
+      return JSON.parse(localStorage.getItem("item"));
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <v-row class="pa-0 mx-0 mt-4">
+  <v-row class="pa-0 mx-0 my-2">
     <v-col cols="12" md="3" class="d-none d-md-flex"></v-col>
     <v-col cols="12" md="6" class="pa-0">
       <v-card class="mx-auto mt-6 pb-12" :loading="loading" width="500">
@@ -11,7 +11,7 @@
               placeholder="type in your firstname"
               type="text"
               outlined
-              color="#42A5F5"
+              color="#0D47A1"
               ref="email"
               v-model="firstname"
               :error-messages="errors[0]"
@@ -23,7 +23,7 @@
               placeholder="type in your lastname"
               type="test"
               outlined
-              color="#42A5F5"
+              color="#0D47A1"
               ref="email"
               v-model="lastname"
               :error-messages="errors[0]"
@@ -35,7 +35,7 @@
               placeholder="Type in your phonenumber"
               type="digit"
               outlined
-              color="#42A5F5"
+              color="#0D47A1"
               ref="email"
               v-model="phonenumber"
               :error-messages="errors[0]"
@@ -47,7 +47,7 @@
               placeholder="Type in your valid email address"
               type="email"
               outlined
-              color="#42A5F5"
+              color="#0D47A1"
               ref="email"
               v-model="email"
               :error-messages="errors[0]"
@@ -61,14 +61,14 @@
               :type="value ? 'password' : 'text'"
               label="Password"
               outlined
-              color="#42A5F5"
+              color="#0D47A1"
               ref="password"
               v-model="password"
               :error-messages="errors[0]"
             ></v-text-field>
           </ValidationProvider>
 
-          <v-btn color="#42A5F5" outlined @click.prevent="handleRegister">Register</v-btn>
+          <v-btn color="#0D47A1" outlined @click.prevent="handleRegister">Register</v-btn>
         </v-form>
       </v-card>
     </v-col>
@@ -135,7 +135,7 @@ export default {
 
 <style scoped>
 .forgot-password {
-  color: #42a5f5;
+  color: #0d47a1;
   background-color: white !important;
 
   text-shadow: none;
