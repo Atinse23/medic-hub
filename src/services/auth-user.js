@@ -1,10 +1,15 @@
 import axios from 'axios';
 
+const transport = axios.create({
+    withCredentials: true
+})
+
 const API_URL = 'https://medic-end.herokuapp.com'
+// const API_URL = 'http://localhost:4000'
 
 
 export const login = async (user) => {
-    return await axios
+    return await transport
         .post(API_URL + '/login', {
             email: user.email,
             password: user.password
@@ -34,7 +39,7 @@ export const logout = () => {
 }
 
 export const register = async (user) => {
-    return await axios.post(API_URL + '/register', {
+    return await transport.post(API_URL + '/register', {
         firstname: user.firstname,
         lastname: user.lastname,
         phonenumber: user.phonenumber,
@@ -51,5 +56,5 @@ export const register = async (user) => {
 }
 
 export const verifyEmail = () => {
-    return axios.post(API_URL + "/api/accounts/verify-registration/", key)
+    return transport.post(API_URL + "/api/accounts/verify-registration/", key)
 }

@@ -76,6 +76,8 @@ export default {
   },
   methods: {
     paystackPopup() {
+      let user = JSON.parse(localStorage.getItem("userToken"));
+      console.log(user);
       let handler = PaystackPop.setup({
         key: "pk_test_ca93f9ae5aa8eb81be47ca9e19b0891f87eb8fe8",
         email: "eromcy@ymail.com",
@@ -88,11 +90,17 @@ export default {
           alert("Window closed.");
         },
         callback: function(response) {
-          axios
-            .post("https://medic-end.herokuapp.com/verifyPayment", {
+          axios({
+            method: "POST",
+            url: "https://medic-end.herokuapp.com/checkout",
+            data: {
               referenceId: response.reference
-            })
-            .then(response => console.log(response.data));
+            },
+            headers: {
+              Authorization: `Bearer ${user.msg}`
+            },
+            withCredentials: true
+          }).then(response => console.log(response.data));
         }
       });
       handler.openIframe();
