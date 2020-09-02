@@ -131,7 +131,7 @@ export default {
   color: yellow !important;
 }
 .initials {
-  color: #311b92 !important;
+  color: #fdfdfd !important;
   margin-left: 5px;
 }
 </style>
